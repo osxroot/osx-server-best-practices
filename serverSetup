@@ -1,0 +1,10 @@
+
+
+# all servers
+serverinfo --setperfmode 1
+
+
+
+
+# AFP
+serverinfo  --setperfmode 1
