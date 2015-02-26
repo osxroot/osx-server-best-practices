@@ -8,3 +8,18 @@ serverinfo --setperfmode 1
 
 # AFP
 serverinfo  --setperfmode 1
+
+
+- AFP: createhomeDirs : NO
+
+- perfmode
+serverinfo --setperfmode 1
+
+- startup drive, not default name (use startup or boot) no spaces in names.
+
+- caching server had no limit. Even if its high, always have a limit.
+
+
+- remove default safari bookmarks. Add any important bookmarks (crashplan, kerio, mdm)
+
+
