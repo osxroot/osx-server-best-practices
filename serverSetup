@@ -1,22 +1,24 @@
 
 
-# all servers
+###########   General Setup    ###########
+
+# Rename startup drive to 'Startup' or 'Boot'
+
 serverinfo --setperfmode 1
 
+###########   AFP    ###########
 
+serveradmin settings afp:createhomeDirs : NO
+serveradmin settings afp:idleDisconnectOnOff = "on"
+serveradmin settings afp:idleDisconnectMsg = "Idle users are disconnect from the server"
+serveradmin settings afp:idleDisconnectTime = 1
+serveradmin settings afp:idleDisconnectFlag:adminUsers = yes
+serveradmin settings afp:idleDisconnectFlag:registeredUsers = yes
+serveradmin settings afp:idleDisconnectFlag:usersWithOpenFiles = yes
+serveradmin settings afp:idleDisconnectFlag:guestUsers = yes
+serveradmin settings afp:reconnectTTLInMin = 10
 
-
-# AFP
-serverinfo  --setperfmode 1
-
-
-- AFP: createhomeDirs : NO
-
-- perfmode
-serverinfo --setperfmode 1
-
-- startup drive, not default name (use startup or boot) no spaces in names.
-
+serveradmin stop afp && serveradmin start afp
 - caching server had no limit. Even if its high, always have a limit.
 
 
