@@ -47,6 +47,8 @@ serveradmin stop afp && serveradmin start afp
 
 # lots of stuff to do here usually
 
+# Enable PostScreen (currently in evernote, will move it here asap)
+
 ########################### Roundcube #####################################
 # After installing
 
