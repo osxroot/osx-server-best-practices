@@ -1,13 +1,32 @@
 
 
-###########   General Setup    ###########
+#### This is a guide with commands - not a script
 
-# Rename startup drive to 'Startup' or 'Boot'
 
+
+########################### MacMini Vault - THANK YOU #####################################
+
+Run as much from this script as makes sense (probably ALL of it)
+https://raw.githubusercontent.com/MacMiniVault/Mac-Scripts/master/setupscript/setupscript.sh
+
+########################### General #####################################
+
+# Rename startup drive from Macintosh HD to 'Startup' or 'Boot'
+# No spaces in drive names
+
+# enable server performance mode (is this is vault script?)
 serverinfo --setperfmode 1
 
-###########   AFP    ###########
+# turn off any network services (wifi, bluetooth, vpn, etc) - not needed on server
 
+# Disable IPV6
+networksetup -listallnetworkservices | grep -v asterisk | while read S; do networksetup -setv6off "$S" && echo "$S: Disabled v6" || echo "$S: Error"; done
+
+# remove default safari bookmarks. Add any important bookmarks (crashplan, kerio, mdm)
+
+
+
+########################### AFP #####################################
 serveradmin settings afp:createhomeDirs : NO
 serveradmin settings afp:idleDisconnectOnOff = "on"
 serveradmin settings afp:idleDisconnectMsg = "Idle users are disconnect from the server"
@@ -17,11 +36,43 @@ serveradmin settings afp:idleDisconnectFlag:registeredUsers = yes
 serveradmin settings afp:idleDisconnectFlag:usersWithOpenFiles = yes
 serveradmin settings afp:idleDisconnectFlag:guestUsers = yes
 serveradmin settings afp:reconnectTTLInMin = 10
-
 serveradmin stop afp && serveradmin start afp
-- caching server had no limit. Even if its high, always have a limit.
+
+########################### Caching #####################################
+# ALWAYS have a sane limit (250GB - 500GB) and move the caching server data to a good place.
+# Caching server data doesn't need RAID or Backup, it will recreate, so a spare non-redundant volume is good.
+
+###########################   Mail   #####################################
+
+# lots of stuff to do here usually
+
+########################### Roundcube #####################################
+# After installing
+
+# Upgrade Roundcube
+# Download new version, decompress and leave it in Downloads
+cd ~/Downloads/roundcubemail-1.0.4/bin/
+./installto.sh /usr/local/topicdesk/roundcube/WebApp
+# We will no longer be using symlinks to the version, so fix this now.
+# assuming the WebApp Symlink points to 1.0.4, run
+cd /usr/local/topicdesk/roundcube
+unlink WebApp
+mv  1.0.4 WebApp
+
+# if not using carddav, disable it in the roundcube plugin config
+perl -p -i -e "s/'managesieve', 'carddav'/'managesieve'/g" /usr/local/topicdesk/roundcube/WebApp/config/main.inc.php
+
+# make sure HTTPS is forced.
+# if needed, roundcube/Webapp.htaccess
+# always test to be sure redirect works.
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+########################### Misc #####################################
 
 
-- remove default safari bookmarks. Add any important bookmarks (crashplan, kerio, mdm)
+
+
 
 
