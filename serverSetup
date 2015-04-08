@@ -6,7 +6,8 @@
 
 ########################### MacMini Vault - THANK YOU #####################################
 
-Run as much from this script as makes sense (probably ALL of it)
+Run as much from this script as makes sense:
+IMPORTANT - the script disables bounjour broadcast- you DO want that enabled on a LAN Server
 https://raw.githubusercontent.com/MacMiniVault/Mac-Scripts/master/setupscript/setupscript.sh
 
 ########################### General #####################################
