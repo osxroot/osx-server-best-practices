@@ -25,7 +25,7 @@ networksetup -listallnetworkservices | grep -v asterisk | while read S; do netwo
 
 # remove default safari bookmarks. Add any important bookmarks (crashplan, kerio, mdm)
 
-
+# Run SystemStamp App with Description/Services as the top item listed.
 
 ########################### AFP #####################################
 serveradmin settings afp:createhomeDirs : NO
