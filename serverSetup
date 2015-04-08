@@ -72,7 +72,11 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-########################### Misc #####################################
+########################### Added Security #####################################
+
+# Fail2Ban
+# Grep the server logs for login failures, its very easy to justify 2 hours to fully configure.
+
 
 
 
