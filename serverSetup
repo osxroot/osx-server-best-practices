@@ -63,7 +63,7 @@ unlink WebApp
 mv  1.0.4 WebApp
 
 # if not using carddav, disable it in the roundcube plugin config
-perl -p -i -e "s/'managesieve', 'carddav'/'managesieve'/g" /usr/local/topicdesk/roundcube/WebApp/config/main.inc.php
+sudo perl -p -i -e "s/'managesieve', 'carddav'/'managesieve'/g" /usr/local/topicdesk/roundcube/WebApp/config/config.inc.php
 
 # make sure HTTPS is forced.
 # if needed, roundcube/Webapp.htaccess
